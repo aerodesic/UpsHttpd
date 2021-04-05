@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+{% block body %}
+  <script src="static/upshttpd.js"></script>
+  <div class='printformat'>
+    <div id='main'>
+      <div id='top'>
+        <form>
+          <button size='3' id='login_button' class='hidden' type='button' onclick='gt_login()'>Login</button>
+          <button size='3' id='logout_button' class='hidden' type='button' onclick='gt_logout()'>Logout</button>
+          <div class='right'>
+            <div class="dropdown">
+              <div class="dropdown-menu" onclick="showDropdown()">
+                <div class="dropdown-bar"></div>
+                <div class="dropdown-bar"></div>
+                <div class="dropdown-bar"></div>
+              </div> 
+              <div id="dropdown-info" class="dropdown-content hidden">
+                <a href="javascript:void(0);" onclick="gt_network_config_dialog_show();">Network Config</a>
+                <a href="javascript:void(0);" onclick="gt_edit_default_params();">Default Params</a>
+                <a href="javascript:void(0);" onclick="gt_edit_current_params();">Current Params</a>
+                <a href="{{ url_for('change_password') }}">Change Password</a>
+                {% if g.user.is_administrator() %}
+                  <a href="{{ url_for('edit_users') }}">Edit Local Users</a>
+                  <a href="{{ url_for('software_update') }}">Software Update</a>
+                  <a href="javascript:void(0);" onclick="gt_reboot();">Reboot</a> 
+                  <a href="javascript:void(0);" onclick="gt_shutdown();">Shutdown</a> 
+                {% endif %}
+                <a href="{{ url_for('logout') }}">Logout</a>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+      <br/>
+      <canvas id='graphs'></canvas>
+      <br/>
+      <div id='ask-dialog' class='hidden'></div>
+    </div>
+  </div>
+{% endblock %}

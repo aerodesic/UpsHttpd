@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+  {% if reason == "reboot" %}
+    <h2>System is rebooting</h2>
+    <h>You will need to reload the home page to restart</h>
+  {% endif %} 
+  {% if reason == "shutdown" %}
+    <h2>System is powered off</h2>
+    <h>You will need to power-cycle the Visioncoach to restore operation and then reload the home page to restart</h>
+  {% endif %} 
+{% endblock %}
+

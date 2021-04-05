@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+{% block body %}
+  <h2>Edit Users</h2>
+  <table border=1 frame=hsides rules=rows>
+    <tr>
+      <th class="user_name">Name</th>
+      <th class="user_permissions">Permissions</th>
+    </tr>
+    {% for username in users|sort() %}
+      <tr>
+        <td class="user_name">{{ username }}</td>
+        <td class="user_permissions">{{ users[username]['permissions'] }}</td>
+        <td><form action="delete_user"><button class="user_edit" type="submit" name='userid' value="{{ users[username]['id'] }}">Del</button></form></td>
+        <td><form action="edit_user"><button class="user_edit" type="submit" name='userid' value="{{ users[username]['id'] }}">Edit</button></form></td>
+      </tr>
+    {% endfor %}
+  </table>
+  <form action="" method="post" class="form-horizontal">
+    <div class="control-group">
+      <div class="controls">
+         <button type="submit" name='action' value='add' class="btn btn-success">Add User</button>
+         <button type="submit" name='action' value='cancel' class="btn btn-success">Cancel</button>
+      </div>
+    </div>
+  </form>
+
+  {% if error_message %}
+    <p>{{ error_message }}</p>
+  {% endif %}
+{% endblock %}
+

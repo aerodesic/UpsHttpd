@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block body %}
+  <form action="" method="post" class="form-horizontal">
+    <h2>Edit user {{ user.username() }} [ {{ user.permissions() }} ]</h2>
+    <div class="control-group">
+        <div class="controls">
+          <select name='permission'>
+             {% for perm in permissions %}
+               {% if perm == user.permissions() %}
+                 <option selected='selected'>{{ perm }}</option>
+               {% else %}
+                 <option>{{ perm }}</option>
+               {% endif %}
+             {% endfor %}
+         </select>
+        </div>
+    </div>
+ 
+    <div class="control-group">
+        <div class="controls">
+          <input type="password" id="newpw1" name="newpw1" class="input-xlarge"
+            placeholder="Enter new password">
+        </div>
+    </div>
+ 
+    <div class="control-group">
+        <div class="controls">
+          <input type="password" id="newpw2" name="newpw2" class="input-xlarge"
+            placeholder="Enter new password again">
+        </div>
+    </div>
+ 
+    <div class="control-group">
+        <div class="controls">
+          <button type="submit" name='action' value='{{ user.get_id() }}' class="btn btn-success">Save</button>
+          <button type="submit" name='action' value='cancel' class="btn btn-success">Cancel</button>
+        </div>
+    </div>
+
+    {% if error_message %}
+      <p>{{ error_message }}</p>
+    {% endif %}
+  </form>
+{% endblock %}
+

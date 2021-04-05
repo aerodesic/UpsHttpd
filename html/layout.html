@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang='en'>
+<link rel="icon" href="static/vc.png">
+  <head>
+    <meta charset="utf-8"/>
+    <link rel="stylesheet" href="static/vc.css"/>
+  </head>
+  <body>
+    <div class="flashes">
+      {% with messages = get_flashed_messages() %}
+        {% if messages %}
+          <script>
+            alert({{messages|safe}});
+          </script>
+        {% endif %}
+      {% endwith %}
+    </div>
+    {% if request.path != "/" %}
+      <a href="/">Home</a>
+    {% endif %}
+    <div class="container">
+      {% block body %} {% endblock %}
+    </div>
+  </body>
+</html>
+

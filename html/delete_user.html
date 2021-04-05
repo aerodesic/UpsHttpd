@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+{% block body %}
+  <form action="" method="post" class="form-horizontal">
+    <h2>Confirm delete of {{ user.username() }} [ {{ user.permissions() }} ]</h2>
+ 
+    <div class="control-group">
+      <button type="submit" name="action" value="{{ user.get_id() }}" class="btn btn-success">Confirm</button>
+      <button type="submit" name="action" value="cancel" class="btn btn-success">Cancel</button>
+    </div>
+  </form>
+{% endblock %}
+
